@@ -71,7 +71,9 @@ education_sex_table |>
     col.names = c("Education Level", "Female", "Male"),
     caption = "Number of Men and Women in Each Education Category"
 )
-
+```
+Comments: The summary table shows the age distributions for men and women in each education category. It seems that there are more men that are of high school age equivalent, and more women that are more than high school equivalent. For people with education level less than high school, numbers across gender are about the same.
+```{r}
 # Make histogram for age distribution
 age_distribution_histogram <- covar_df |> 
   ggplot(aes(x = age, fill = sex)) + 
@@ -90,6 +92,7 @@ age_distribution_histogram <- covar_df |>
 print(age_distribution_histogram)
 
 ```
+Comments: It seems that people with education level less than high school experience a sharper drop in physical activity than any other group as they age. In the high school equivalent group, there is a significant increase around 20-40, followed by a drop to similar levels as the other two groups. In those with more than high schoo, the drop is less drastic over time. Overall, women seem to be more active than men except in the less than high school group.
 
 ```{r, cache = TRUE}
 # Aggregate accelerometer data by participant to get total daily activity
@@ -138,7 +141,7 @@ ggplot(merged_df, aes(x = minute_interval, y = mims, color = sex, group = seqn))
   theme(legend.position = "top")  # Position the legend at the top
 ```
 
-#Problem 3
+Problem 3
 
 ```{r, cache = TRUE}
 # Load and clean data
@@ -175,7 +178,7 @@ citi_bike_data %>%
   pivot_wider(names_from = member_casual, values_from = total_rides, values_fill = 0) |>
   knitr::kable()
 ```
-
+Comments: Members seem to be taking many more rides than casual Citi Bike users, in some cases by almost 3 fold, like in July 2020, or over 8 fold, in January 2024. This is the case across every time period observed.
 ```{r}
 #NOT KNITTING ON LOCAL MACHINE
 # Clean the data
@@ -220,6 +223,7 @@ ggplot(median_duration_df, aes(x = weekdays, y = median_duration, fill = month))
     plot.title = element_text(hjust = 0.5, size = 18, face = "bold")
   )
 ```
+Comments: The median ride duration is overall higher in July 2020 than January 2020. In 2024, the median ride length is overall shorter in both months.
 ```{r, cache = TRUE}
 # Step 3: Distribution of Ride Duration by Month, Membership Status, and Bike Type
 # Filter for 2024 data
@@ -240,7 +244,7 @@ ggplot(data_2024, aes(x = duration, fill = month)) +
   theme_minimal() +
   scale_fill_manual(values = c("January" = "red", "July" = "blue"))
 ```
-
+Comments: The most rides are taken by members riding electric bikes, and there are many more rides taken in July than in January.
 
 
 
